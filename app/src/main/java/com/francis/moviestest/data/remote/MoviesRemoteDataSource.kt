@@ -18,22 +18,21 @@ class MoviesRemoteDataSource(
         get() = iAppDispatchers.io()
 
     override fun getPopularMovies(
-        api_key: String,
         successCallback: (MoviesResponse) -> Unit,
-        errorCallback: () -> Unit
+        errorCallback: (Exception) -> Unit
     ) {
         launch {
             try {
-                val response = moviesService.getPopularMovies(api_key)
+                val response = moviesService.getPopularMovies()
                 val body = response.body()
 
                 if (response.isSuccessful && body!=null){
                     successCallback(body)
                 }else{
-                    errorCallback()
+                    errorCallback.invoke(error("Movie is null"))
                 }
             }catch (e: Exception){
-                errorCallback()
+                errorCallback.invoke(e)
             }
         }
 
