@@ -9,6 +9,7 @@ import com.francis.moviestest.model.Movie
 import com.francis.moviestest.base.BaseViewModel
 import com.francis.moviestest.data.db.PopularMovieData
 import com.francis.moviestest.data.domain.PopularMoviesContainer
+import com.francis.moviestest.data.domain.TopMoviesContainer
 import com.francis.moviestest.data.domain.UpcomingMoviesContainer
 import com.francis.moviestest.data.domain.toMovie
 import com.francis.moviestest.data.repository.IMoviesRepository
@@ -49,6 +50,7 @@ class MoviesViewModel(
                 showLoading.value = true
                 getRemotePopularMovies()
                 getRemoteUpcomingMovies()
+                getRemoteTopRatedMovies()
             }catch (e:Exception){
                 _status.value = MovieAPIStatus.ERROR
                 showLoading.value = false
@@ -85,7 +87,7 @@ class MoviesViewModel(
         viewModelScope.launch {
             moviesRepository.getRemoteUpcomingMovies(
                 successCallback = {
-                   // _movieList.postValue(it.results)
+                    Response(true, null)
                 },
                 errorCallback = {
                     Response(false, it)
@@ -94,8 +96,17 @@ class MoviesViewModel(
         }
     }
 
-    fun getTopRatedMovies(){
-
+    fun getRemoteTopRatedMovies(){
+        viewModelScope.launch {
+            moviesRepository.getRemoteTopMovies(
+                successCallback = {
+                    Response(true, null)
+                },
+                errorCallback = {
+                    Response(false, it)
+                }
+            )
+        }
     }
 
     fun setMoviesOption(moviesOption: MOVIESSOPTION){
@@ -116,6 +127,7 @@ class MoviesViewModel(
         when(it){
             MOVIESSOPTION.POPULAR -> getSavedPopularMovies()
             MOVIESSOPTION.UPCOMING -> getSavedUpcomingMovies()
+            MOVIESSOPTION.TOP -> getSavedTopMovies()
         }
     }
 
@@ -139,8 +151,18 @@ class MoviesViewModel(
         return movies
     }
 
+    fun getSavedTopMovies(): LiveData<List<Movie>>{
+        viewModelScope.launch {
+            val movi= moviesRepository.getSavedTopList()
+            movies = Transformations.map(movi){
+                TopMoviesContainer(it).toMovie()
+            }
+        }
+        return movies
+    }
+
     enum class MOVIESSOPTION{
-        POPULAR, UPCOMING
+        POPULAR, UPCOMING, TOP
     }
 
     enum class MovieAPIStatus {

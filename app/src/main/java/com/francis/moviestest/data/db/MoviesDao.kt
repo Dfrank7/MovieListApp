@@ -23,4 +23,10 @@ interface MoviesDao {
 
     @Query("Select * From UpcomingMovieData")
     fun getUpcomingMovies(): LiveData<List<UpcomingMovieData>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun saveTopMovies(vararg movieTrans: TopRatedMovieData)
+
+    @Query("Select * From TopRatedMovieData")
+    fun getTopMovies(): LiveData<List<TopRatedMovieData>>
 }

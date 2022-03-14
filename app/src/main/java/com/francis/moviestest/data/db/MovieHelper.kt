@@ -3,6 +3,7 @@ package com.francis.moviestest.data.db
 import androidx.lifecycle.LiveData
 import com.francis.moviestest.data.domain.NetworkMoviesContainer
 import com.francis.moviestest.data.domain.toPopulatEntity
+import com.francis.moviestest.data.domain.toTopEntity
 import com.francis.moviestest.data.domain.toUpcomingEntity
 
 class MovieHelper(private val database: MoviesDb) {
@@ -21,6 +22,14 @@ class MovieHelper(private val database: MoviesDb) {
 
     fun  saveUpcomingList(data: NetworkMoviesContainer){
         database.getMoviesDb().saveUpcomingMovies(*data.toUpcomingEntity())
+    }
+
+    fun getTopList(): LiveData<List<TopRatedMovieData>>{
+        return database.getMoviesDb().getTopMovies()
+    }
+
+    fun  saveTopList(data: NetworkMoviesContainer){
+        database.getMoviesDb().saveTopMovies(*data.toTopEntity())
     }
 
 }

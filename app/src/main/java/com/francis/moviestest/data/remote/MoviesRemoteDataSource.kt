@@ -60,6 +60,26 @@ class MoviesRemoteDataSource(
         }
     }
 
+    override fun getTopMovies(
+        successCallback: (MoviesResponse) -> Unit,
+        errorCallback: (Exception) -> Unit
+    ) {
+        launch {
+            try {
+                val response = moviesService.getTopRatedMovies()
+                val body = response.body()
+
+                if (response.isSuccessful && body!=null){
+                    successCallback(body)
+                }else{
+                    errorCallback.invoke(error("Movies is null"))
+                }
+            }catch (e: Exception){
+                errorCallback.invoke(e)
+            }
+        }
+    }
+
     override fun clear() {
         coroutineContext.cancel()
     }

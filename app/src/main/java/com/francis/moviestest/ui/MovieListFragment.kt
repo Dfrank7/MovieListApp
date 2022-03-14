@@ -12,6 +12,7 @@ import com.francis.moviestest.databinding.MoviesListFragmentBinding
 import com.francis.moviestest.ui.adapter.MovieListAdapter
 import com.francis.moviestest.ui.viewmodel.MoviesViewModel
 import com.francis.moviestest.utility.useSnackBar
+import com.google.gson.Gson
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieListFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener{
@@ -40,6 +41,7 @@ class MovieListFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener{
     private fun setupObservers(){
         moviesViewModel.run {
             movieList.observe(viewLifecycleOwner){movies->
+                Log.d("okkkkk", Gson().toJson(movies))
                 moviesAdapter.submitList(movies)
             }
 
@@ -99,6 +101,7 @@ class MovieListFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener{
         when(item.itemId){
             R.id.show_popular_menu-> moviesViewModel.setMoviesOption(MoviesViewModel.MOVIESSOPTION.POPULAR)
             R.id.show_upcoming_menu -> moviesViewModel.setMoviesOption(MoviesViewModel.MOVIESSOPTION.UPCOMING)
+            R.id.show_toprated_menu -> moviesViewModel.setMoviesOption(MoviesViewModel.MOVIESSOPTION.TOP)
         }
         return true
     }

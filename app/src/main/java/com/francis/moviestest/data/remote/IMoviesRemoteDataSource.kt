@@ -14,4 +14,9 @@ interface IMoviesRemoteDataSource : IDataSource {
         successCallback: (MoviesResponse) -> Unit,
         errorCallback: (Exception) -> Unit
     )
+
+    fun getTopMovies(
+        successCallback: (MoviesResponse) -> Unit,
+        errorCallback: (Exception) -> Unit
+    )
 }

@@ -11,4 +11,7 @@ interface IMoviesService {
 
     @GET("movie/upcoming")
     suspend fun getUpcomingMovies(@Query("api_key")api_key: String? = "a53ef3891e00404db7372320ce8abaab"): Response<MoviesResponse>
+
+    @GET("movie/top_rated")
+    suspend fun getTopRatedMovies(@Query("api_key")api_key: String? = "a53ef3891e00404db7372320ce8abaab"): Response<MoviesResponse>
 }
