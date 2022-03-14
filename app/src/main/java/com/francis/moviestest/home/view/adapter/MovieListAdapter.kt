@@ -1,12 +1,11 @@
-package com.francis.moviestest.ui.adapter
+package com.francis.moviestest.home.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.francis.moviestest.model.Movie
+import com.francis.moviestest.home.model.Movie
 import com.francis.moviestest.databinding.MoviesItemBinding
 import com.francis.moviestest.utility.loadPicture
 

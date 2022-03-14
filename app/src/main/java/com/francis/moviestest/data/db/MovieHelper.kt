@@ -1,10 +1,10 @@
 package com.francis.moviestest.data.db
 
 import androidx.lifecycle.LiveData
-import com.francis.moviestest.data.domain.NetworkMoviesContainer
-import com.francis.moviestest.data.domain.toPopulatEntity
-import com.francis.moviestest.data.domain.toTopEntity
-import com.francis.moviestest.data.domain.toUpcomingEntity
+import com.francis.moviestest.home.model.domain.NetworkMoviesContainer
+import com.francis.moviestest.home.model.domain.toPopulatEntity
+import com.francis.moviestest.home.model.domain.toTopEntity
+import com.francis.moviestest.home.model.domain.toUpcomingEntity
 
 class MovieHelper(private val database: MoviesDb) {
 

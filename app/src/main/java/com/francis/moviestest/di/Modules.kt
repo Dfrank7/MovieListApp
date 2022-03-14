@@ -1,12 +1,11 @@
 package com.francis.moviestest.di
 
 import com.francis.moviestest.di.definition.*
-import com.francis.moviestest.ui.viewmodel.MoviesViewModel
+import com.francis.moviestest.home.viewmodel.MoviesViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
-import org.koin.dsl.single
 
 private const val NETWORK = "network"
 val networkModule = module {

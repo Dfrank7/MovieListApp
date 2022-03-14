@@ -1,23 +1,18 @@
-package com.francis.moviestest.ui.viewmodel
+package com.francis.moviestest.home.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
-import com.francis.moviestest.model.MoviesResponse
-import com.francis.moviestest.model.Movie
+import com.francis.moviestest.home.model.Movie
 import com.francis.moviestest.base.BaseViewModel
-import com.francis.moviestest.data.db.PopularMovieData
-import com.francis.moviestest.data.domain.PopularMoviesContainer
-import com.francis.moviestest.data.domain.TopMoviesContainer
-import com.francis.moviestest.data.domain.UpcomingMoviesContainer
-import com.francis.moviestest.data.domain.toMovie
+import com.francis.moviestest.home.model.domain.PopularMoviesContainer
+import com.francis.moviestest.home.model.domain.TopMoviesContainer
+import com.francis.moviestest.home.model.domain.UpcomingMoviesContainer
+import com.francis.moviestest.home.model.domain.toMovie
 import com.francis.moviestest.data.repository.IMoviesRepository
-import com.francis.moviestest.model.Response
+import com.francis.moviestest.home.model.Response
 import com.francis.moviestest.utility.INetworkStatus
-import com.francis.moviestest.utility.NetworkStatus
-import com.francis.moviestest.utility.isConnectionAvailable
 import kotlinx.coroutines.launch
 
 
@@ -140,7 +135,6 @@ class MoviesViewModel(
         viewModelScope.launch {
             val movi= moviesRepository.getSavedPopularList()
             movies = Transformations.map(movi){
-                Log.e("okkkPOP", it.size.toString())
                 PopularMoviesContainer(it).toMovie()
             }
         }

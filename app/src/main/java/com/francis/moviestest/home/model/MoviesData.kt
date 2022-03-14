@@ -1,4 +1,4 @@
-package com.francis.moviestest.model
+package com.francis.moviestest.home.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

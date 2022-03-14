@@ -1,15 +1,14 @@
-package com.francis.moviestest.ui
+package com.francis.moviestest.home.view.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.francis.moviestest.R
 import com.francis.moviestest.databinding.MoviesListFragmentBinding
-import com.francis.moviestest.ui.adapter.MovieListAdapter
-import com.francis.moviestest.ui.viewmodel.MoviesViewModel
+import com.francis.moviestest.home.view.adapter.MovieListAdapter
+import com.francis.moviestest.home.viewmodel.MoviesViewModel
 import com.francis.moviestest.utility.useToast
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -42,7 +41,6 @@ class MovieListFragment: Fragment(){
     private fun setupObservers(){
         moviesViewModel.run {
             movieList.observe(viewLifecycleOwner){movies->
-                Log.e("okkkk", movies.size.toString())
                 if (movies.isNotEmpty()){
                     moviesAdapter.submitList(movies)
                     binding.nodataLayout.visibility = View.GONE
@@ -68,7 +66,10 @@ class MovieListFragment: Fragment(){
 
             navigateToDetails.observe(viewLifecycleOwner){
                 it?.let {
-                    this@MovieListFragment.findNavController().navigate(MovieListFragmentDirections.actionShowDetail(it))
+                    this@MovieListFragment.findNavController().navigate(MovieListFragmentDirections.actionShowDetail(
+                            it
+                        )
+                    )
                     onMovieCompleteNavigation()
                 }
             }

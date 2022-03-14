@@ -3,8 +3,6 @@ package com.francis.moviestest.data.db
 import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
-import com.francis.moviestest.data.domain.GenreTypeConverter
 
 @Entity
 data class PopularMovieData(

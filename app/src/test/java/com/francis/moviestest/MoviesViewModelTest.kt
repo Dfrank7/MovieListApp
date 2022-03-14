@@ -5,7 +5,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.francis.moviestest.data.repository.MoviesRepository
-import com.francis.moviestest.ui.viewmodel.MoviesViewModel
+import com.francis.moviestest.home.viewmodel.MoviesViewModel
 import com.francis.moviestest.utility.NetworkStatus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

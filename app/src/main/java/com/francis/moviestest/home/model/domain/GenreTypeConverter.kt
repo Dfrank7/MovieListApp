@@ -1,4 +1,4 @@
-package com.francis.moviestest.data.domain
+package com.francis.moviestest.home.model.domain
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

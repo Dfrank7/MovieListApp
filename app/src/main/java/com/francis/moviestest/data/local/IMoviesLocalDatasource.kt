@@ -5,7 +5,7 @@ import com.francis.moviestest.data.IDataSource
 import com.francis.moviestest.data.db.PopularMovieData
 import com.francis.moviestest.data.db.TopRatedMovieData
 import com.francis.moviestest.data.db.UpcomingMovieData
-import com.francis.moviestest.data.domain.NetworkMoviesContainer
+import com.francis.moviestest.home.model.domain.NetworkMoviesContainer
 
 interface IMoviesLocalDatasource : IDataSource{
     fun getPopularMovies(): LiveData<List<PopularMovieData>>

@@ -1,6 +1,6 @@
-package com.francis.moviestest.data.domain
+package com.francis.moviestest.home.model.domain
 
-import com.francis.moviestest.model.Movie
+import com.francis.moviestest.home.model.Movie
 import com.francis.moviestest.data.db.PopularMovieData
 import com.francis.moviestest.data.db.TopRatedMovieData
 import com.francis.moviestest.data.db.UpcomingMovieData

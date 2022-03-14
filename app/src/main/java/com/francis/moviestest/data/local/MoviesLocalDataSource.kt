@@ -5,7 +5,7 @@ import com.francis.moviestest.data.db.MovieHelper
 import com.francis.moviestest.data.db.PopularMovieData
 import com.francis.moviestest.data.db.TopRatedMovieData
 import com.francis.moviestest.data.db.UpcomingMovieData
-import com.francis.moviestest.data.domain.NetworkMoviesContainer
+import com.francis.moviestest.home.model.domain.NetworkMoviesContainer
 import com.francis.moviestest.utility.IAppDispatchers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel

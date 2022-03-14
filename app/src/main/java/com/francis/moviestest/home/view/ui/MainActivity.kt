@@ -1,4 +1,4 @@
-package com.francis.moviestest
+package com.francis.moviestest.home.view.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

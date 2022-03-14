@@ -1,4 +1,4 @@
-package com.francis.moviestest.ui
+package com.francis.moviestest.home.view.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.francis.moviestest.databinding.MovieDetailFragmentBinding
-import com.francis.moviestest.model.Movie
+import com.francis.moviestest.home.model.Movie
 import com.francis.moviestest.utility.loadPicture
 
 class MovieDetailFragment : Fragment() {

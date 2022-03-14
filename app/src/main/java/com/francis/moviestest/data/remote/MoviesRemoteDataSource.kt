@@ -1,6 +1,6 @@
 package com.francis.moviestest.data.remote
 
-import com.francis.moviestest.model.MoviesResponse
+import com.francis.moviestest.home.model.MoviesResponse
 import com.francis.moviestest.service.api.IMoviesService
 import com.francis.moviestest.utility.IAppDispatchers
 import com.francis.moviestest.utility.INetworkStatus

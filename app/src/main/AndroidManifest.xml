@@ -15,7 +15,7 @@
         android:name=".MoviesApp"
         android:theme="@style/Theme.MoviesTest">
         <activity
-            android:name="com.francis.moviestest.MainActivity"
+            android:name="com.francis.moviestest.home.view.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

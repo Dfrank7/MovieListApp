@@ -1,6 +1,6 @@
 package com.francis.moviestest.data.remote
 
-import com.francis.moviestest.model.MoviesResponse
+import com.francis.moviestest.home.model.MoviesResponse
 import com.francis.moviestest.data.IDataSource
 
 interface IMoviesRemoteDataSource : IDataSource {

@@ -30,6 +30,7 @@ good reason to use non-stable dependency.
     * [Jetpack](https://developer.android.com/jetpack)
         * [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle) - perform an action when lifecycle state changes
         * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and manage UI-related data in a lifecycle conscious way
+        * [Room](https://developer.android.com/topic/libraries/architecture/room) - For Storing of data
   *   [Glide](https://github.com/bumptech/glide) - image loading library with better memory management for pretty large list
 * Architecture
     * Clean Architecture (at module level)
