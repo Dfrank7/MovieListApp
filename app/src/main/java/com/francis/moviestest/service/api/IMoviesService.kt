@@ -13,6 +13,7 @@ interface IMoviesService {
     @GET("movie/upcoming")
     suspend fun getUpcomingMovies(@Query("api_key")api_key: String? = Constants.apiKey): Response<MoviesResponse>
 
+    //Replace Latest with Top Rated as Latest response isn't returning the list of movies.
     @GET("movie/top_rated")
     suspend fun getTopRatedMovies(@Query("api_key")api_key: String? = Constants.apiKey): Response<MoviesResponse>
 }
