@@ -3,6 +3,8 @@ package com.francis.moviestest.data.db
 import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.francis.moviestest.data.domain.GenreTypeConverter
 
 @Entity
 data class PopularMovieData(
@@ -10,7 +12,8 @@ data class PopularMovieData(
     @NonNull
     val adult: Boolean,
     val backdrop_path: String,
-    val genre_ids: List<Int>,
+//    @TypeConverters(GenreTypeConverter::class)
+//    val genre_ids: List<Int>,
     val id: Int,
     val original_language: String,
     val original_title: String,
@@ -30,7 +33,7 @@ data class UpcomingMovieData(
     @NonNull
     val adult: Boolean,
     val backdrop_path: String,
-    val genre_ids: List<Int>,
+    //val genre_ids: List<Int>,
     val id: Int,
     val original_language: String,
     val original_title: String,
@@ -45,7 +48,7 @@ data class UpcomingMovieData(
 )
 
 @Entity
-data class LatestMovieData(
+data class TopRatedMovieData(
     @PrimaryKey(autoGenerate = true)
     @NonNull
     val adult: Boolean,

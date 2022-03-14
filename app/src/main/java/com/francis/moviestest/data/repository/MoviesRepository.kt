@@ -1,20 +1,21 @@
 package com.francis.moviestest.data.repository
 
 import androidx.lifecycle.LiveData
-import com.francis.moviestest.MoviesResponse
+import com.francis.moviestest.model.MoviesResponse
 import com.francis.moviestest.data.db.PopularMovieData
+import com.francis.moviestest.data.db.UpcomingMovieData
 import com.francis.moviestest.data.domain.NetworkMoviesContainer
-import com.francis.moviestest.data.domain.toPopulatEntity
-import com.francis.moviestest.data.local.MoviesLocalDataSource
-import com.francis.moviestest.data.remote.MoviesRemoteDataSource
+import com.francis.moviestest.data.local.IMoviesLocalDatasource
+import com.francis.moviestest.data.remote.IMoviesRemoteDataSource
 import com.francis.moviestest.utility.IAppDispatchers
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class MoviesRepository(
-    private val moviesRemoteDataSource: MoviesRemoteDataSource,
-    private val moviesLocalDataSource: MoviesLocalDataSource,
+    private val moviesRemoteDataSource: IMoviesRemoteDataSource,
+    private val moviesLocalDataSource: IMoviesLocalDatasource,
     private val iAppDispatchers: IAppDispatchers
 ):IMoviesRepository, CoroutineScope {
     override fun getRemotePopularMovies(
@@ -46,6 +47,40 @@ class MoviesRepository(
         return moviesLocalDataSource.savePopularMovies(popularMovieData)
     }
 
+    override fun getRemoteUpcomingMovies(
+        successCallback: (MoviesResponse) -> Unit,
+        errorCallback: (String) -> Unit
+    ) {
+        launch {
+            moviesRemoteDataSource.getUpcomingMovies(
+                { response ->
+                    val upcomingMovieData = NetworkMoviesContainer(response.results)
+                    saveUpcomingList(upcomingMovieData)
+                    successCallback.invoke(response)
+                },
+
+                {ex ->
+                    errorCallback.invoke(ex.message ?: "Unknown error occured" )
+
+                }
+            )
+        }
+    }
+
+    override fun getSavedUpcomingList(): LiveData<List<UpcomingMovieData>> {
+        return moviesLocalDataSource.getUpcomingMovies()
+    }
+
+    override fun saveUpcomingList(upcomingMovieData: NetworkMoviesContainer) {
+        return moviesLocalDataSource.saveUpcomingMovies(upcomingMovieData)
+    }
+
+    override fun clear() {
+        moviesLocalDataSource.clear()
+        moviesRemoteDataSource.clear()
+        coroutineContext.cancel()
+    }
+
     override val coroutineContext: CoroutineContext
-        get() = TODO("Not yet implemented")
+        get() = iAppDispatchers.ui()
 }

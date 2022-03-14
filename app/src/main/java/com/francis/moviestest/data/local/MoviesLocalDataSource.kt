@@ -1,9 +1,9 @@
 package com.francis.moviestest.data.local
 
 import androidx.lifecycle.LiveData
-import com.francis.moviestest.MoviesResponse
 import com.francis.moviestest.data.db.MovieHelper
 import com.francis.moviestest.data.db.PopularMovieData
+import com.francis.moviestest.data.db.UpcomingMovieData
 import com.francis.moviestest.data.domain.NetworkMoviesContainer
 import com.francis.moviestest.utility.IAppDispatchers
 import kotlinx.coroutines.CoroutineScope
@@ -26,6 +26,16 @@ class MoviesLocalDataSource(
     override fun savePopularMovies(movies: NetworkMoviesContainer) {
         launch {
             movieHelper.savePopularList(movies)
+        }
+    }
+
+    override fun getUpcomingMovies(): LiveData<List<UpcomingMovieData>> {
+        return movieHelper.getUpcomingList()
+    }
+
+    override fun saveUpcomingMovies(movies: NetworkMoviesContainer) {
+        launch {
+            movieHelper.saveUpcomingList(movies)
         }
     }
 
