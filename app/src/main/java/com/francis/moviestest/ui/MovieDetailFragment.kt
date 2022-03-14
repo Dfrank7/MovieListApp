@@ -17,10 +17,10 @@ class MovieDetailFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = MovieDetailFragmentBinding.inflate(inflater)
-        movie = MovieDetailFragmentArgs.fromBundle(arguments!!).selectedMovie
-        //setupView(movie)
+        movie = MovieDetailFragmentArgs.fromBundle(requireArguments()).selectedMovie
+        activity?.title = movie.title
         return binding.root
     }
 

@@ -3,6 +3,7 @@ package com.francis.moviestest.data.remote
 import com.francis.moviestest.model.MoviesResponse
 import com.francis.moviestest.service.api.IMoviesService
 import com.francis.moviestest.utility.IAppDispatchers
+import com.francis.moviestest.utility.INetworkStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
@@ -11,7 +12,8 @@ import kotlin.coroutines.CoroutineContext
 
 class MoviesRemoteDataSource(
     private val moviesService: IMoviesService,
-    private val iAppDispatchers: IAppDispatchers
+    private val iAppDispatchers: IAppDispatchers,
+    private val networkStatus: INetworkStatus
 ): IMoviesRemoteDataSource, CoroutineScope {
 
     override val coroutineContext: CoroutineContext

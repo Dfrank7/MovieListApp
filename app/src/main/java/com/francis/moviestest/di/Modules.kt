@@ -24,14 +24,15 @@ val repoModule = module {
 
     //Helper
     single { createMovieHelper(androidApplication()) }
+    single { createNetworkStatus(androidApplication()) }
 
     //Movies repository
     single { createLocalDataSource(get(), get()) }
-    single { createMoviesRemoteDataSource(get(), get()) }
+    single { createMoviesRemoteDataSource(get(), get(), get()) }
     single { createMoviesRepository(get(), get(), get()) }
 
 }
 
 val viewModelModule = module {
-    viewModel{MoviesViewModel(get())}
+    viewModel{MoviesViewModel(get(), get())}
 }

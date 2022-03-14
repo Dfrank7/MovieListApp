@@ -39,6 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/movieName"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:layout_marginTop="@dimen/card_margin"/>
@@ -53,6 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/vote"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:layout_marginTop="@dimen/card_margin"/>
@@ -67,6 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/plot"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:layout_marginTop="5dp"/>
@@ -81,6 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/releaseDate"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:layout_marginTop="@dimen/card_margin"/>

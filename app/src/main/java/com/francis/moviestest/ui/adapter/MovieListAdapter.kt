@@ -47,7 +47,6 @@ class MovieListAdapter(val clickListener: MovieListener): ListAdapter<Movie, Rec
             binding.view.setOnClickListener {
                 clickListener.onClick(result)
             }
-            //clickListener.onClick(result)
         }
 
         companion object{

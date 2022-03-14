@@ -15,6 +15,9 @@ interface MoviesDao {
     @Query("Select * From PopularMovieData")
     fun getPopularMovies(): LiveData<List<PopularMovieData>>
 
+    @Query("Select * From PopularMovieData")
+    fun getPopularMoviesTest(): PopularMovieData
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveUpcomingMovies(vararg movieTrans: UpcomingMovieData)
 

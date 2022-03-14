@@ -1,19 +1,20 @@
 package com.francis.moviestest.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.francis.moviestest.R
-import com.francis.moviestest.data.domain.PopularMoviesContainer
-import com.francis.moviestest.data.domain.toMovie
 import com.francis.moviestest.databinding.MoviesListFragmentBinding
 import com.francis.moviestest.ui.adapter.MovieListAdapter
 import com.francis.moviestest.ui.viewmodel.MoviesViewModel
+import com.francis.moviestest.utility.useSnackBar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MovieListFragment: Fragment(){
+class MovieListFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener{
     private lateinit var binding: MoviesListFragmentBinding
 
     private lateinit var moviesAdapter: MovieListAdapter
@@ -55,10 +56,21 @@ class MovieListFragment: Fragment(){
             }
 
             navigateToDetails.observe(viewLifecycleOwner){
-                it.let {
-                    this@MovieListFragment.findNavController().
-                    navigate(MovieListFragmentDirections.actionShowDetail(it!!))
-                    moviesViewModel.onMovieCompleteNavigation()
+                it?.let {
+                    this@MovieListFragment.findNavController().navigate(MovieListFragmentDirections.actionShowDetail(it))
+                    onMovieCompleteNavigation()
+                }
+            }
+
+//            refreshmovieList.observe(viewLifecycleOwner){
+//                moviesAdapter.submitList(it)
+//            }
+
+            checkInternet.observe(viewLifecycleOwner){
+                it.let {connected->
+                    if (!connected){
+                        useSnackBar(requireView(), "No Internet Connection")
+                    }
                 }
             }
         }
@@ -89,6 +101,11 @@ class MovieListFragment: Fragment(){
             R.id.show_upcoming_menu -> moviesViewModel.setMoviesOption(MoviesViewModel.MOVIESSOPTION.UPCOMING)
         }
         return true
+    }
+
+    override fun onRefresh() {
+//        moviesViewModel.getRemoteUpcomingMovies()
+//        moviesViewModel.getRemotePopularMovies()
     }
 
 }

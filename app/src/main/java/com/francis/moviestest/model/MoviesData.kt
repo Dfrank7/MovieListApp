@@ -27,3 +27,6 @@ data class Movie(
     val vote_average: Double,
     val vote_count: Int
 ): Parcelable
+
+//data class Error(val success: Boolean, val status_code: Int, val status_message: String)
+data class Response(val success: Boolean, val error_message: String?)

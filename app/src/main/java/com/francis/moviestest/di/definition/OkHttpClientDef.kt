@@ -24,10 +24,7 @@ fun createAuthOkHttpClient(app: Application): OkHttpClient{
 
 private fun buildLoggingInterceptor(): Interceptor {
     return HttpLoggingInterceptor {messsage -> Timber.d("Okhttp: %s", messsage)}.apply {
-        level = if(BuildConfig.DEBUG){
-            HttpLoggingInterceptor.Level.BODY
-        }else{
-            HttpLoggingInterceptor.Level.NONE
-        }
+        level = HttpLoggingInterceptor.Level.BODY
+
     }
 }

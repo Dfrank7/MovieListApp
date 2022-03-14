@@ -17,7 +17,7 @@
         android:id="@+id/movieDetailFragment"
         android:name="com.francis.moviestest.ui.MovieDetailFragment"
         tools:layout="@layout/movie_detail_fragment"
-        android:label="MovieDetailFragment" >
+        android:label="Movie Details" >
 
         <argument
             android:name="selectedMovie"
