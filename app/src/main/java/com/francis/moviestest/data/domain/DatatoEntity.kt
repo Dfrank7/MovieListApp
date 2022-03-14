@@ -5,10 +5,6 @@ import com.francis.moviestest.data.db.PopularMovieData
 import com.francis.moviestest.data.db.TopRatedMovieData
 import com.francis.moviestest.data.db.UpcomingMovieData
 
-//fun Result.toPopularEntity() = PopularMovieData(
-//    adult, backdrop_path, genre_ids, id, original_language, original_title, overview, popularity, poster_path, release_date, title, video, vote_average, vote_count
-//)
-
 data class NetworkMoviesContainer(val result: List<Movie>)
 data class PopularMoviesContainer(val popularMovies: List<PopularMovieData>)
 data class UpcomingMoviesContainer(val upcomingMovies: List<UpcomingMovieData>)

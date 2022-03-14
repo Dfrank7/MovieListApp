@@ -25,13 +25,17 @@ class MoviesRemoteDataSource(
     ) {
         launch {
             try {
-                val response = moviesService.getPopularMovies()
-                val body = response.body()
+                if (networkStatus.isConnected()) {
+                    val response = moviesService.getPopularMovies()
+                    val body = response.body()
 
-                if (response.isSuccessful && body!=null){
-                    successCallback(body)
+                    if (response.isSuccessful && body != null) {
+                        successCallback(body)
+                    } else {
+                        errorCallback.invoke(error("Movies is null"))
+                    }
                 }else{
-                    errorCallback.invoke(error("Movies is null"))
+                    errorCallback.invoke(error("No Internet Connection"))
                 }
             }catch (e: Exception){
                 errorCallback.invoke(e)
@@ -46,13 +50,17 @@ class MoviesRemoteDataSource(
     ) {
         launch {
             try {
-                val response = moviesService.getUpcomingMovies()
-                val body = response.body()
+                if (networkStatus.isConnected()) {
+                    val response = moviesService.getUpcomingMovies()
+                    val body = response.body()
 
-                if (response.isSuccessful && body!=null){
-                    successCallback(body)
+                    if (response.isSuccessful && body != null) {
+                        successCallback(body)
+                    } else {
+                        errorCallback.invoke(error("Movies is null"))
+                    }
                 }else{
-                    errorCallback.invoke(error("Movies is null"))
+                    errorCallback.invoke(error("No Internet Connection"))
                 }
             }catch (e: Exception){
                 errorCallback.invoke(e)
@@ -66,13 +74,17 @@ class MoviesRemoteDataSource(
     ) {
         launch {
             try {
-                val response = moviesService.getTopRatedMovies()
-                val body = response.body()
+                if (networkStatus.isConnected()) {
+                    val response = moviesService.getTopRatedMovies()
+                    val body = response.body()
 
-                if (response.isSuccessful && body!=null){
-                    successCallback(body)
+                    if (response.isSuccessful && body != null) {
+                        successCallback(body)
+                    } else {
+                        errorCallback.invoke(error("Movies is null"))
+                    }
                 }else{
-                    errorCallback.invoke(error("Movies is null"))
+                    errorCallback.invoke(error("No Internet Connection"))
                 }
             }catch (e: Exception){
                 errorCallback.invoke(e)

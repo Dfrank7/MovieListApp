@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 
@@ -21,6 +22,10 @@ fun isConnectionAvailable(context: Context): Boolean {
 
 fun useSnackBar(view: View, message: String){
     Snackbar.make(view, message, Snackbar.LENGTH_LONG).show()
+}
+
+fun useToast(view: Context, message: String){
+    Toast.makeText(view, message, Toast.LENGTH_SHORT).show()
 }
 
 //fun showSnackBar()

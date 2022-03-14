@@ -15,6 +15,9 @@ interface MoviesDao {
     @Query("Select * From PopularMovieData")
     fun getPopularMovies(): LiveData<List<PopularMovieData>>
 
+//    @Q
+//    fun deleteAll()
+
     @Query("Select * From PopularMovieData")
     fun getPopularMoviesTest(): PopularMovieData
 

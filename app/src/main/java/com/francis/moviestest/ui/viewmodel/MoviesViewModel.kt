@@ -1,5 +1,6 @@
 package com.francis.moviestest.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -28,7 +29,9 @@ class MoviesViewModel(
     private val _status = MutableLiveData<MovieAPIStatus>()
     val status: LiveData<MovieAPIStatus> get() = _status
 
-    private val movieoption = MutableLiveData(MOVIESSOPTION.POPULAR)
+    private val _movieoption = MutableLiveData(MOVIESSOPTION.POPULAR)
+    val movieoption : LiveData<MOVIESSOPTION>
+    get() = _movieoption
 
     private val _movieList = MutableLiveData<List<Movie>>()
     val refreshmovieList : LiveData<List<Movie>>
@@ -48,9 +51,7 @@ class MoviesViewModel(
             try {
                 _status.value = MovieAPIStatus.LOADING
                 showLoading.value = true
-                getRemotePopularMovies()
-                getRemoteUpcomingMovies()
-                getRemoteTopRatedMovies()
+                refreshMovies()
             }catch (e:Exception){
                 _status.value = MovieAPIStatus.ERROR
                 showLoading.value = false
@@ -65,13 +66,19 @@ class MoviesViewModel(
     }
 
 
+    fun refreshMovies(){
+        getRemotePopularMovies()
+        getRemoteUpcomingMovies()
+        getRemoteTopRatedMovies()
+    }
+
 
     fun getRemotePopularMovies(){
         showLoading.value = true
         viewModelScope.launch {
             moviesRepository.getRemotePopularMovies(
                 successCallback = {
-                    _movieList.postValue(it.results)
+                   // _movieList.postValue(it.results)
                     Response(true, null)
                 },
                 errorCallback = {
@@ -96,7 +103,7 @@ class MoviesViewModel(
         }
     }
 
-    fun getRemoteTopRatedMovies(){
+    private fun getRemoteTopRatedMovies(){
         viewModelScope.launch {
             moviesRepository.getRemoteTopMovies(
                 successCallback = {
@@ -110,9 +117,8 @@ class MoviesViewModel(
     }
 
     fun setMoviesOption(moviesOption: MOVIESSOPTION){
-        movieoption.value = moviesOption
+        _movieoption.value = moviesOption
     }
-
 
     fun onMovieClicked(movie: Movie) {
         _navigateToDetails.value = movie
@@ -121,13 +127,12 @@ class MoviesViewModel(
     fun onMovieCompleteNavigation(){
         _navigateToDetails.value = null
     }
-
-    val movieList = Transformations.switchMap(movieoption){
+    val movieList = Transformations.switchMap(_movieoption){
         showLoading.value = true
         when(it){
             MOVIESSOPTION.POPULAR -> getSavedPopularMovies()
             MOVIESSOPTION.UPCOMING -> getSavedUpcomingMovies()
-            MOVIESSOPTION.TOP -> getSavedTopMovies()
+            MOVIESSOPTION.TOPRATED -> getSavedTopMovies()
         }
     }
 
@@ -135,6 +140,7 @@ class MoviesViewModel(
         viewModelScope.launch {
             val movi= moviesRepository.getSavedPopularList()
             movies = Transformations.map(movi){
+                Log.e("okkkPOP", it.size.toString())
                 PopularMoviesContainer(it).toMovie()
             }
         }
@@ -162,7 +168,7 @@ class MoviesViewModel(
     }
 
     enum class MOVIESSOPTION{
-        POPULAR, UPCOMING, TOP
+        POPULAR, UPCOMING, TOPRATED
     }
 
     enum class MovieAPIStatus {
