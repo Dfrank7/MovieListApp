@@ -27,6 +27,7 @@ class MoviesRepository(
             moviesRemoteDataSource.getPopularMovies(
                 { response ->
                     val popularMovieData = NetworkMoviesContainer(response.results)
+                    deletePopular()
                     savePopularList(popularMovieData)
                     successCallback.invoke(response)
 
@@ -48,6 +49,10 @@ class MoviesRepository(
         return moviesLocalDataSource.savePopularMovies(popularMovieData)
     }
 
+    override fun deletePopular() {
+        return moviesLocalDataSource.deletePopular()
+    }
+
     override fun getRemoteUpcomingMovies(
         successCallback: (MoviesResponse) -> Unit,
         errorCallback: (String) -> Unit
@@ -56,6 +61,7 @@ class MoviesRepository(
             moviesRemoteDataSource.getUpcomingMovies(
                 { response ->
                     val upcomingMovieData = NetworkMoviesContainer(response.results)
+                    deleteUpcoming()
                     saveUpcomingList(upcomingMovieData)
                     successCallback.invoke(response)
                 },
@@ -72,6 +78,10 @@ class MoviesRepository(
         return moviesLocalDataSource.getUpcomingMovies()
     }
 
+    override fun deleteUpcoming() {
+        return moviesLocalDataSource.deleteUpcoming()
+    }
+
     override fun saveUpcomingList(upcomingMovieData: NetworkMoviesContainer) {
         return moviesLocalDataSource.saveUpcomingMovies(upcomingMovieData)
     }
@@ -84,6 +94,7 @@ class MoviesRepository(
             moviesRemoteDataSource.getUpcomingMovies(
                 { response ->
                     val topMovieData = NetworkMoviesContainer(response.results)
+                    deleteTop()
                     saveTopList(topMovieData)
                     successCallback.invoke(response)
                 },
@@ -102,6 +113,10 @@ class MoviesRepository(
 
     override fun saveTopList(topRatedMovieData: NetworkMoviesContainer) {
         return moviesLocalDataSource.saveTopMovies(topRatedMovieData)
+    }
+
+    override fun deleteTop() {
+        return moviesLocalDataSource.deleteTop()
     }
 
     override fun clear() {

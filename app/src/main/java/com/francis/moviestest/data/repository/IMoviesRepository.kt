@@ -16,9 +16,13 @@ interface IMoviesRepository : IBaseRepository {
 
     fun savePopularList(popularMovieData: NetworkMoviesContainer)
 
+    fun deletePopular()
+
     fun getRemoteUpcomingMovies(successCallback: (MoviesResponse)-> Unit, errorCallback: (String)-> Unit)
 
     fun getSavedUpcomingList(): LiveData<List<UpcomingMovieData>>
+
+    fun deleteUpcoming()
 
     fun saveUpcomingList(upcomingMovieData: NetworkMoviesContainer)
 
@@ -27,5 +31,7 @@ interface IMoviesRepository : IBaseRepository {
     fun getSavedTopList(): LiveData<List<TopRatedMovieData>>
 
     fun saveTopList(topRatedMovieData: NetworkMoviesContainer)
+
+    fun deleteTop()
 
 }

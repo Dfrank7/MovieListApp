@@ -30,6 +30,10 @@ class MoviesLocalDataSource(
         }
     }
 
+    override fun deletePopular() {
+        movieHelper.deletePopular()
+    }
+
     override fun getUpcomingMovies(): LiveData<List<UpcomingMovieData>> {
         return movieHelper.getUpcomingList()
     }
@@ -40,6 +44,10 @@ class MoviesLocalDataSource(
         }
     }
 
+    override fun deleteUpcoming() {
+        return movieHelper.deleteUpcoming()
+    }
+
     override fun getTopMovies(): LiveData<List<TopRatedMovieData>> {
         return movieHelper.getTopList()
     }
@@ -48,6 +56,10 @@ class MoviesLocalDataSource(
         launch {
             movieHelper.saveTopList(movies)
         }
+    }
+
+    override fun deleteTop() {
+        movieHelper.deleteTop()
     }
 
     override fun clear() {

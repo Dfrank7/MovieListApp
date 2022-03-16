@@ -15,8 +15,8 @@ interface MoviesDao {
     @Query("Select * From PopularMovieData")
     fun getPopularMovies(): LiveData<List<PopularMovieData>>
 
-//    @Q
-//    fun deleteAll()
+    @Query("DELETE  FROM PopularMovieData")
+    fun deletePopularMovies()
 
     @Query("Select * From PopularMovieData")
     fun getPopularMoviesTest(): PopularMovieData
@@ -27,9 +27,15 @@ interface MoviesDao {
     @Query("Select * From UpcomingMovieData")
     fun getUpcomingMovies(): LiveData<List<UpcomingMovieData>>
 
+    @Query("DELETE  FROM UpcomingMovieData")
+    fun deleteUpcomingMovies()
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveTopMovies(vararg movieTrans: TopRatedMovieData)
 
     @Query("Select * From TopRatedMovieData")
     fun getTopMovies(): LiveData<List<TopRatedMovieData>>
+
+    @Query("DELETE  FROM TopRatedMovieData")
+    fun deleteTopMovies()
 }

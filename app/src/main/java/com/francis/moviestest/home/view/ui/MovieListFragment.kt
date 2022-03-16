@@ -1,6 +1,7 @@
 package com.francis.moviestest.home.view.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -41,6 +42,7 @@ class MovieListFragment: Fragment(){
     private fun setupObservers(){
         moviesViewModel.run {
             movieList.observe(viewLifecycleOwner){movies->
+                Log.e("okkkk", movies.size.toString())
                 if (movies.isNotEmpty()){
                     moviesAdapter.submitList(movies)
                     binding.nodataLayout.visibility = View.GONE

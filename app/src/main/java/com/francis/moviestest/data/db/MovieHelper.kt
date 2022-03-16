@@ -32,4 +32,17 @@ class MovieHelper(private val database: MoviesDb) {
         database.getMoviesDb().saveTopMovies(*data.toTopEntity())
     }
 
+    fun  deletePopular(){
+        return database.getMoviesDb().deletePopularMovies()
+    }
+
+    fun  deleteUpcoming(){
+        return database.getMoviesDb().deleteUpcomingMovies()
+    }
+
+    fun  deleteTop(){
+        return database.getMoviesDb().deleteTopMovies()
+    }
+
+
 }
